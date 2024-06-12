@@ -1,11 +1,6 @@
 const User = require('../models/UserModel');
 const KafkaConfig = require('../config/config');
 
-const getUsers = async (req, res) => {
-    const users = await User.find({}).sort({ createdAt: -1 });
-    res.status(200).json(users);
-}
-
 const sendMessageToKafka = async (req, res) => {
     const users = await User.find({}).sort({ createdAt: -1 });
     try {
@@ -31,6 +26,5 @@ const sendMessageToKafka = async (req, res) => {
 }
 
 module.exports = {
-    getUsers,
     sendMessageToKafka
 }
